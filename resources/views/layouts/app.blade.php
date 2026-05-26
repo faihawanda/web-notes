@@ -1,36 +1,116 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="id">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $title ?? 'Payroll App' }}</title>
+    {{-- Remix Icon --}}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    {{-- Google Font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<body class="bg-gray-100 antialiased" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <div class="flex min-h-screen">
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+        {{-- ===== SIDEBAR ===== --}}
+        <aside class="w-64 bg-white shadow-sm flex flex-col">
+
+            {{-- Logo --}}
+            <div class="h-20 flex items-center justify-center py-20 pt-16">
+                <div class="flex justify-center items-center gap-3">
+                    <i class="ri-booklet-fill text-xl bg-[#0367F8] text-white py-1 px-1.5 rounded"></i>
+                    <span class="text-2xl font-bold text-[#0367F8]">Notesy</span>
+                </div>
+            </div>
+
+            {{-- Menu --}}
+            <nav class="flex-1 px-4 py-10 space-y-1">
+
+                <a href="#"
+                    class="flex items-center gap-5 px-5 py-4 text-base font-semibold
+                    {{ request()->routeIs('dashboard')
+                    ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] hover:bg-[#F1F5FE] hover:border-[#0367F8] transition-all' }}">
+                    <i class="ri-home-line text-2xl"></i>
+                    Dashboard
+                </a>
+
+
+                <a href="#"
+                    class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
+                         {{ request()->routeIs('karyawan.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                    <i class="ri-sticky-note-line text-2xl"></i>
+                    All Notes
+                </a>
+
+                <a href="#"
+                    class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
+                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                    <i class="ri-folder-3-line text-2xl"></i>
+                    Categories
+                </a>
+
+                <a href="#"
+                    class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
+                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                    <i class="ri-list-check-3 text-2xl"></i>
+                    Task List
+                </a>
+            </nav>
+
+            {{-- User Info + Logout --}}
+            <div>
+                {{-- <div class="flex items-center gap-3 mb-3 bg-white py-4 px-3">
+                    <div
+                        class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold text-sm">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                     </div>
-                </header>
-            @endisset
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-black truncate">{{ auth()->user()->name }}</p>
+                    </div>
+                </div> --}}
+                <form method="POST" action="{{ route('logout') }}" class="px-5 py-4 pb-3">
+                    @csrf
+                    <button type="submit"
+                        class="w-full flex items-center gap-5 px-5 py-4 rounded-lg text-base text-red-500 hover:bg-white font-medium transition">
+                        <i class="ri-logout-box-line text-2xl"></i> 
+                        Logout
+                    </button>
+                </form>
+            </div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
+        </aside>
+        {{-- ===== END SIDEBAR ===== --}}
+
+        {{-- ===== MAIN CONTENT ===== --}}
+        <div class="flex-1 flex flex-col">
+
+            {{-- Topbar --}}
+            <header class="h-16 flex items-center justify-between px-6">
+                <h1 class="text-lg font-semibold text-gray-800">{{ $title ?? 'Dashboard' }}</h1>
+                <span class="text-sm text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</span>
+            </header>
+
+            {{-- Page Content --}}
+            <main class="flex-1 p-6 overflow-auto">
+                @yield('content')
             </main>
+
         </div>
-    </body>
+        {{-- ===== END MAIN CONTENT ===== --}}
+
+    </div>
+
+</body>
+
 </html>
