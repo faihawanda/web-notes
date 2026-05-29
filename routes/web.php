@@ -30,7 +30,7 @@ Route::middleware('auth')->controller(CategoryController::class)->group(function
 
 // All Notes
 Route::middleware('auth')->controller(NotesController::class)->group(function () {
-    Route::get('/notes', 'index')->name('allnotes.index'); 
+    Route::get('/notes', 'index')->name('allnotes.index');
 });
 
 // Task List
