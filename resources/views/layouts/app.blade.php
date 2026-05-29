@@ -15,9 +15,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 antialiased" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-gray-100 antialiased overflow-hidden" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
-    <div class="flex min-h-screen">
+    <div class="flex h-screen">
 
         {{-- ===== SIDEBAR ===== --}}
         <aside class="w-64 bg-white shadow-sm flex flex-col">
@@ -102,7 +102,7 @@
             </header>
 
             {{-- Page Content --}}
-            <main class="flex-1 p-14 overflow-auto">
+            <main class="flex-1 p-14 overflow-y-auto">
                 @yield('content')
             </main>
 

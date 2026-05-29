@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Tambahkan ini agar Str::slug bisa digunakan
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,29 +14,55 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
-    public function store(Request $request)
-    {
-        // dd($request->all());
+    public function store(Request $request) {
 
-        // validasi apakah datanya benar dan sesuai harapan
+        // validasi input data
         $request->validate([
             'name' => 'required|string|max:225',
-            'color' => 'required|string' // Validasi untuk warna wajib diisi
+            'color' => 'required|string'
         ], 
         [
-            'name.required' => 'Nama kategori wajib diisi',
-            'name.string' => 'Nama harus berupa teks',
-            'color.required' => 'Warna kategori wajib dipilih', // Pesan error custom untuk warna
+            'name.required' => 'Category name is required',
+            'name.string' => 'Category name must be a string',
+            'color.required' => 'Category color is required',
         ]);
         
-        // proses menyimpan dalam database
+        // proses penyimpanan ke database
         Categories::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'color' => $request->color // Menyimpan data warna yang dipilih user
         ]);
 
-        // Opsional: Kembalikan halaman setelah sukses menyimpan
-        return redirect()->back()->with('success', 'Kategori berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Category added successfully!');
+    }
+
+    public function update(Request $request, $id) {
+
+        // validasi input data
+        $request->validate([
+            'name' => 'required|string|max:225',
+            'color' => 'required|string'
+        ]);
+
+        // cari kategorinya, lalu update ke database
+        $category = Categories::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'color' => $request->color
+        ]);
+
+        return redirect()->back()->with('success', 'Category updated successfully!');
+    }
+
+    public function destroy($id) {
+        $category = Categories::findOrFail($id);
+
+        // menghapus data
+        $category->delete();
+
+        return redirect()->back()->with('success', 'Category deleted successfully!');
     }
 }
+
