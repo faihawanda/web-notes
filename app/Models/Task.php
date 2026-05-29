@@ -12,4 +12,10 @@ class Task extends Model
         'category',
         'status'
     ];
+
+    // TAMBAHKAN INI YA!
+    public function subtasks()
+    {
+        return $this->hasMany(Subtask::class);
+    }
 }

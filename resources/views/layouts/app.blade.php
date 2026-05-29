@@ -20,7 +20,7 @@ rel="stylesheet"
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 antialiased" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-[#F8F9FC] antialiased" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
     <div class="flex min-h-screen">
 
@@ -101,10 +101,10 @@ rel="stylesheet"
         <div class="flex-1 flex flex-col">
 
             {{-- Topbar --}}
-            <header class="h-16 flex items-center justify-between px-6">
+            {{-- <header class="h-16 flex items-center justify-between px-6">
                 <h1 class="text-lg font-semibold text-gray-800">{{ $title ?? 'Dashboard' }}</h1>
                 <span class="text-sm text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</span>
-            </header>
+            </header> --}}
 
             {{-- Page Content --}}
             <main class="flex-1 p-6 overflow-auto">
