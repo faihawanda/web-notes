@@ -33,35 +33,35 @@
             {{-- Menu --}}
             <nav class="flex-1 px-4 py-10 space-y-1">
 
-                <a href="#"
+                <a href="{{ route('dashboard') }}"
                     class="flex items-center gap-5 px-5 py-4 text-base font-semibold
                     {{ request()->routeIs('dashboard')
                     ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
-                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] hover:bg-[#F1F5FE] hover:border-[#0367F8] transition-all' }}">
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-home-line text-2xl"></i>
                     Dashboard
                 </a>
 
 
-                <a href="#"
+                <a href="{{ route('allnotes.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('karyawan.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('allnotes.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-sticky-note-line text-2xl"></i>
                     All Notes
                 </a>
 
-                <a href="#"
+                <a href="{{ route('category.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('category.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-folder-3-line text-2xl"></i>
                     Categories
                 </a>
 
-                <a href="#"
+                <a href="{{ route('tasklist.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('tasklist.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-list-check-3 text-2xl"></i>
                     Task List
@@ -102,7 +102,7 @@
             </header>
 
             {{-- Page Content --}}
-            <main class="flex-1 p-6 overflow-auto">
+            <main class="flex-1 p-14 overflow-auto">
                 @yield('content')
             </main>
 
