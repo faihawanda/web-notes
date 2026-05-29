@@ -17,4 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Task Controller
+use App\Http\Controllers\TaskController;
+
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
+// TAMBAHKAN INI
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+
+require __DIR__ . '/auth.php';
