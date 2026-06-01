@@ -10,7 +10,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('task-board', [
+        return view('task.index', [
             // Pastikan string status sesuai dengan database kamu nanti
             'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
             'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
