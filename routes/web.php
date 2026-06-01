@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\SubtaskController; // Kita kumpulin di atas biar rapi
+use App\Http\Controllers\SubtaskController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TaskListController;
@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
-    // ✨ Route pindah status otomatis (To-Do -> In Progress -> Done)
+    // Route pindah status otomatis (To-Do -> In Progress -> Done)
     Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 
     //  BARIS LANGKAH TERAKHIR: Route untuk pindah status dari To-Do -> In Progress -> Done
@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Task List
-    Route::controller(NotesController::class)->group(function () {
+    Route::controller(TaskListController::class)->group(function () {
         Route::get('/tasklist', 'index')->name('tasklist.index');
     });
 });
