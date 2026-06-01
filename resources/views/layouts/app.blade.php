@@ -12,10 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 antialiased overflow-hidden" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-[#F8F9FC] antialiased overflow-hidden" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
     <div class="flex h-screen">
 
@@ -70,15 +72,6 @@
 
             {{-- User Info + Logout --}}
             <div>
-                {{-- <div class="flex items-center gap-3 mb-3 bg-white py-4 px-3">
-                    <div
-                        class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold text-sm">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-black truncate">{{ auth()->user()->name }}</p>
-                    </div>
-                </div> --}}
                 <form method="POST" action="{{ route('logout') }}" class="px-5 py-4 pb-3">
                     @csrf
                     <button type="submit"
@@ -94,12 +87,6 @@
 
         {{-- ===== MAIN CONTENT ===== --}}
         <div class="flex-1 flex flex-col">
-
-            {{-- Topbar --}}
-            <header class="h-16 flex items-center justify-between px-6">
-                <h1 class="text-lg font-semibold text-gray-800">{{ $title ?? 'Dashboard' }}</h1>
-                <span class="text-sm text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</span>
-            </header>
 
             {{-- Page Content --}}
             <main class="flex-1 p-14 overflow-y-auto">
