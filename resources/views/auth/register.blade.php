@@ -1,89 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <!-- Remixicon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }} - Register</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-poppins bg-white overflow-x-hidden">
-    <!--register-->
-    <section class="flex items-center justify-center px-6 py-20 min-h-screen relative overflow-hidden">
-        <!--blur-->
-        <div class="absolute -top-40 -right-20 w-[300px] h-[400px] bg-blue-600 rounded-full blur-[120px] opacity-40"></div>
-        <div class="absolute bottom-0 -left-20 w-[300px] h-[400px] bg-blue-600 rounded-full blur-[120px] opacity-40"></div>
+<body class="antialiased bg-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
-        <!--card-->
-        <div class="w-full max-w-md relative z-10">
-            <!--title-->
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-medium">Create Account</h2>
-                <p class="text-sm text-gray-500 mt-3">Register and start your journey with us.</p>
-            </div>
+    <div class="w-screen h-screen overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-12">
 
-            <!--form-->
-            <form method="POST" action="{{ route('register') }}" class="space-y-6">
-                @csrf
-                <!--name-->
-                <div>
-                    <label class="text-sm tracking-wide">Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Enter your name" class="w-full mt-2 px-4 py-3 border border-gray-300 focus:outline-none focus:border-blue-600 transition"/>
-                    @error('name')
-                        <p class="text-red-500 text-sm mt-2">
-                            {{ $message }}
-                        </p>
-                    @enderror
+        <div class="w-full max-w-md mx-auto justify-center items-center flex">
+            <div>
+                <div class="flex flex-col justify-center items-center text-center mb-10 w-full">
+                    <h2 class="text-4xl font-bold text-black mb-3">Get Started with Paylio</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
+                        Create an account to manage payroll easily
+                    </p>
                 </div>
 
-                <!--email-->
-                <div>
-                    <label class="text-sm tracking-wide">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required autocomplete="username" placeholder="Enter your email" class="w-full mt-2 px-4 py-3 border border-gray-300 focus:outline-none focus:border-blue-600 transition"/>
-                    @error('email')
-                        <p class="text-red-500 text-sm mt-2">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+                <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    @csrf
 
-                <!--password-->
-                <div>
-                    <label class="text-sm tracking-wide">Password</label>
-                    <input type="password" name="password" required autocomplete="new-password" placeholder="Enter your password" class="w-full mt-2 px-4 py-3 border border-gray-300 focus:outline-none focus:border-black transition"/>
-                    @error('password')
-                        <p class="text-red-500 text-sm mt-2">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+                    <div>
+                        <input id="name"
+                            class="block w-full px-6 py-4 bg-[#F5F5F5] border border-transparent rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#548CA1] focus:bg-white shadow-sm transition"
+                            type="text" name="name" placeholder="Full Name" value="{{ old('name') }}" required
+                            autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
 
-                <!--confirm password-->
-                <div>
-                    <label class="text-sm tracking-wide">Confirm Password</label>
-                    <input type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm your password" class="w-full mt-2 px-4 py-3 border border-gray-300 focus:outline-none focus:border-black transition"/>
-                    @error('password_confirmation')
-                        <p class="text-red-500 text-sm mt-2">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+                    <div>
+                        <input id="email"
+                            class="block w-full px-6 py-4 bg-[#F5F5F5] border border-transparent rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#548CA1] focus:bg-white shadow-sm transition"
+                            type="email" name="email" placeholder="Email" value="{{ old('email') }}" required
+                            autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
 
-                <!--button-->
-                <button type="submit" class="w-full mt-4 uppercase tracking-widest text-sm py-3 border border-black hover:bg-blue-600 hover:text-white hover:border-white transition">
-                    Register
-                </button>
-            </form>
+                    <div>
+                        <input id="password"
+                            class="block w-full px-6 py-4 bg-[#F5F5F5] border border-transparent rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#548CA1] focus:bg-white shadow-sm transition"
+                            type="password" name="password" placeholder="Password" required
+                            autocomplete="new-password" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
 
-            <!--login-->
-            <div class="text-center mt-10 text-sm">
-                Already have an account?
-                <a href="{{ route('login') }}"class="underline hover:opacity-60">Log in</a>
+                    <div>
+                        <input id="password_confirmation"
+                            class="block w-full px-6 py-4 bg-[#F5F5F5] border border-transparent rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#548CA1] focus:bg-white shadow-sm transition"
+                            type="password" name="password_confirmation" placeholder="Confirm Password" required
+                            autocomplete="new-password" />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+
+                    <div class="pt-10">
+                        <button type="submit"
+                            class="w-full py-4 bg-[#1A1A1A] hover:bg-black text-white font-medium rounded-full transition duration-200 shadow-md flex justify-center items-center">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <a class="text-sm text-gray-400 hover:text-gray-600 transition" href="{{ route('login') }}">
+                            Already registered? Log in
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+
+        <div class="h-full w-full bg-[#1430FF] relative">
+            <div class="absolute bottom-0 p-10">
+                <h1 class="text-white text-[170px] font-bold leading-none">Hi, <br>User :D</h1>
+            </div>
+        </div>
+
+    </div>
 
 </body>
+
 </html>
