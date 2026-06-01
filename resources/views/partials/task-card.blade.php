@@ -1,4 +1,4 @@
-<div class="bg-white rounded-[24px] border border-[#EDF0FA] shadow-sm p-5 mb-5">
+<div class="task-card bg-white rounded-[24px] border border-[#EDF0FA] shadow-sm p-5 mb-5">
 
     <div class="flex justify-between items-start gap-2">
     <div class="flex flex-wrap items-center gap-2">
