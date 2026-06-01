@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -45,7 +45,7 @@
                 </a>
 
 
-                <a href="{{ route('allnotes.index') }}"
+                <a href="#"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
                          {{ request()->routeIs('allnotes.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
@@ -61,9 +61,9 @@
                     Categories
                 </a>
 
-                <a href="{{ route('tasklist.index') }}"
+                <a href="{{ route('tasks.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('tasklist.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('tasks.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-list-check-3 text-2xl"></i>
                     Task List
@@ -87,6 +87,21 @@
 
         {{-- ===== MAIN CONTENT ===== --}}
         <div class="flex-1 flex flex-col">
+
+            {{-- Top Bar --}}
+            <div class="flex flex-col lg:flex-row justify-between lg:items-start gap-6 py-6 px-10 bg-gray-50 shadow-sm">
+                <div>
+                    <p class="text-base text-gray-600">
+                        {{ auth()->user()->name }}'s Workspace
+                    </p>
+                </div>
+
+                <div>
+                    <span class="text-sm text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</span>
+                </div>
+
+
+            </div>
 
             {{-- Page Content --}}
             <main class="flex-1 p-14 overflow-y-hidden w-full h-full">

@@ -1,34 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-[#F8F9FC] min-h-screen p-8">
-
-    <div class="flex flex-col lg:flex-row justify-between lg:items-start gap-6 mb-8">
-        <div>
-            <h1 class="text-[42px] md:text-[52px] font-bold text-black leading-tight">
-                Welcome {{ auth()->user()->name }}!
-            </h1>
-            {{-- Bagian Teams kelompok sudah resmi dihapus biar tampilan super clean ✨ --}}
-        </div>
-
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-           
-<div class="flex items-center bg-white border-none rounded-full px-5 h-[56px] w-full sm:w-[430px] shadow-sm">
-    <i class="ri-search-line text-[#2F6BFF] text-[22px]"></i>
-    <input type="text" placeholder="Find Your Task" class="w-full ml-3 bg-transparent outline-none text-black placeholder:text-[#98A2B3]">
-</div>
-
-           <div class="bg-white border border-[#E5E8F5] rounded-full px-3 py-2 flex items-center shadow-sm min-w-[190px]">
-    <div class="w-[50px] h-[50px] rounded-full bg-blue-200 overflow-hidden flex items-center justify-center font-bold text-blue-700">
-        {{ substr(auth()->user()->name, 0, 1) }}
-    </div>
-    <div class="ml-3">
-        <h3 class="font-semibold text-[15px] leading-none">{{ auth()->user()->name }}</h3>
-        <p class="text-[#98A2B3] text-sm mt-1">User</p>
-    </div>
-</div>
-        </div>
-    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
@@ -168,25 +140,4 @@
         }, 300);
     }
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.querySelector('input[placeholder="Find Your Task"]');
-        const cards = document.querySelectorAll('.task-card');
-
-        searchInput.addEventListener('keyup', function() {
-            const query = this.value.toLowerCase();
-            
-            cards.forEach(card => {
-                // Mencari teks di dalam elemen h3 di dalam card tersebut
-                const title = card.querySelector('h3') ? card.querySelector('h3').innerText.toLowerCase() : '';
-                
-                // Logika: Kalau judul mengandung kata kunci, tampilkan. Jika tidak, sembunyikan.
-                card.style.display = title.includes(query) ? "" : "none";
-            });
-        });
-    });
-</script>
-
-
 @endsection
