@@ -56,4 +56,18 @@ class TaskController extends Controller
 
         return redirect()->back()->with('success', 'Project berhasil dihapus!');
     }
+
+    // ✨ FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
+    public function updateStatus(Request $request, Task $task)
+    {
+        $request->validate([
+            'status' => 'required|in:todo,in-progress,done'
+        ]);
+
+        $task->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->back()->with('success', 'Task status updated successfully!');
+    }
 }
