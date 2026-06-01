@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index()
-    {
-        return view('task-board', [
-            // Pastikan string status sesuai dengan database kamu nanti
-            'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
-            'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
-            'doneTasks'     => Task::where('status', 'done')->latest()->get(),
+{
+    return view('task.index', [
+        'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
+        'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
+        'doneTasks'     => Task::where('status', 'done')->latest()->get(),
         ]);
-    }
+    }   
 
     public function store(Request $request)
     {
