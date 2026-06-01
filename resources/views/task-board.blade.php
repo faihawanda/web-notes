@@ -8,16 +8,7 @@
             <h1 class="text-[42px] md:text-[52px] font-bold text-black leading-tight">
                 Welcome {{ auth()->user()->name }}!
             </h1>
-
-            <div class="flex flex-wrap items-center gap-4 mt-6">
-                <h2 class="font-semibold text-[22px] text-black">Teams</h2>
-                <button class="h-[48px] px-8 rounded-full bg-[#2F6BFF] text-white font-medium shadow-sm hover:scale-105 duration-300">RPL</button>
-                <button class="h-[48px] px-8 rounded-full border border-[#C9C9FF] bg-white text-[#7067F5] font-medium hover:bg-[#F7F8FF] duration-300">Magazine</button>
-                <button class="h-[48px] px-8 rounded-full border border-[#F0D38A] bg-white text-[#D9A01E] font-medium hover:bg-[#FFF9ED] duration-300">Tahfidz</button>
-                <button class="w-[48px] h-[48px] rounded-full border border-[#D4D8F0] bg-white text-[#2F6BFF] flex items-center justify-center text-2xl hover:bg-[#F5F7FF] duration-300">
-                    <i class="ri-add-line"></i>
-                </button>
-            </div>
+            {{-- Bagian Teams kelompok sudah resmi dihapus biar tampilan super clean ✨ --}}
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -38,6 +29,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
+        <!-- Kolom To-Do -->
         <div class="bg-[#FBFCFF] border border-[#E3E8F4] rounded-[30px] p-4 w-full">
             <div class="bg-[#EEF2FF] rounded-[22px] px-5 py-4 flex items-center justify-between mb-5">
                 <div class="flex items-center gap-3">
@@ -63,6 +55,7 @@
             </button>
         </div>
 
+        <!-- Kolom In Progress -->
         <div class="bg-[#FBFCFF] border border-[#E3E8F4] rounded-[30px] p-4 w-full">
             <div class="bg-[#F1EEFF] rounded-[22px] px-5 py-4 flex items-center justify-between mb-5">
                 <div class="flex items-center gap-3">
@@ -88,6 +81,7 @@
             </button>
         </div>
 
+        <!-- Kolom Done -->
         <div class="bg-[#FBFCFF] border border-[#E3E8F4] rounded-[30px] p-4 w-full">
             <div class="bg-[#EDF9F0] rounded-[22px] px-5 py-4 flex items-center justify-between mb-5">
                 <div class="flex items-center gap-3">
@@ -132,13 +126,13 @@
 
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Task Title</label>
-                <input type="text" name="title" required placeholder="e.g., Design The Dashboard" 
+                <input type="text" name="title" required placeholder="Example: Design the new dashboard layout" 
                        class="w-full px-4 h-[50px] border border-[#E5E8F5] rounded-xl outline-none focus:border-[#2F6BFF]">
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Category / Major</label>
-                <input type="text" name="category" placeholder="e.g., RPL, Magazine" 
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                <input type="text" name="category" placeholder="Example: Frontend, Backend, UI Design" 
                        class="w-full px-4 h-[50px] border border-[#E5E8F5] rounded-xl outline-none focus:border-[#2F6BFF]">
             </div>
 
