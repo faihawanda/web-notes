@@ -61,7 +61,7 @@
                     Categories
                 </a>
 
-                <a href="{{ route('tasklist.index') }}"
+                <a href="{{ route('tasks.indexphp artisan migrate') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
                          {{ request()->routeIs('tasklist.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
