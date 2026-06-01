@@ -102,7 +102,7 @@
             </header>
 
             {{-- Page Content --}}
-            <main class="flex-1 p-14 overflow-y-auto">
+            <main class="flex-1 p-14 overflow-y-hidden w-full h-full">
                 @yield('content')
             </main>
 

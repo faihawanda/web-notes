@@ -4,7 +4,7 @@
     {{-- Header --}}
     <div class="flex items-center gap-5 mb-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Category</h1>
-        <div class="py-1 px-2 font-bold border border-2 border-black rounded-xl">
+        <div class="py-1 px-2 font-bold border-2 border-black rounded-xl">
             <button onclick="openAddModal()">
                 <i class="ri-add-line text-black"></i>
             </button>
@@ -40,7 +40,7 @@
     @endif
 
     {{-- Content --}}
-    <div class="grid grid-cols-4 gap-x-10 gap-y-10 w-fit">
+    <div class="grid grid-cols-4 gap-x-10 gap-y-10 w-fit h-full overflow-y-auto">
 
         @foreach ($categories as $category)
             @php
