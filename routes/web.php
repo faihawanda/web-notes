@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\SubtaskController; // Kita kumpulin di atas biar rapi
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,10 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
-    // --- AREA ROUTE SUBTASKS ---
+    //  BARIS LANGKAH TERAKHIR: Route untuk pindah status dari To-Do -> In Progress -> Done
+    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+
+    // Route Subtasks (Menggunakan SubtaskController yang benar)
     Route::post('/tasks/{task}/subtasks', [TaskController::class, 'storeSubtask'])->name('subtasks.store');
-    Route::delete('/subtasks/{subtask}', [TaskController::class, 'destroySubtask'])->name('subtasks.destroy');
-    Route::patch('/subtasks/{subtask}/toggle', [TaskController::class, 'toggleSubtask'])->name('subtasks.toggle'); // <-- BARIS INI TADI KETINGGALAN YA! ✨
+    Route::delete('/subtasks/{subtask}', [SubtaskController::class, 'destroy'])->name('subtasks.destroy');
+    Route::patch('/subtasks/{subtask}/toggle', [SubtaskController::class, 'toggle'])->name('subtasks.toggle');
 });
 
 require __DIR__ . '/auth.php';

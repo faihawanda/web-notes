@@ -1,22 +1,35 @@
 <div class="bg-white rounded-[24px] border border-[#EDF0FA] shadow-sm p-5 mb-5">
 
-    <div class="flex justify-between items-start">
-        <div class="flex items-center gap-2">
-            <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6BFF] text-[12px] font-medium leading-none">
-                High
-            </span>
+    <div class="flex justify-between items-start gap-2">
+    <div class="flex flex-wrap items-center gap-2">
+        <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6BFF] text-[12px] font-medium leading-none">
+            High
+        </span>
 
-            @if($task->category)
-            <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#FFECEF] text-[#FF7D92] text-[12px] font-medium leading-none">
-                {{ $task->category }}
-            </span>
-            @endif
-        </div>
+        @if($task->category)
+        <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#FFECEF] text-[#FF7D92] text-[12px] font-medium leading-none">
+            {{ $task->category }}
+        </span>
+        @endif
+    </div>
+
+    <!-- Dropdown Pindah Status Otomatis -->
+    <div class="flex items-center gap-2">
+        <form action="{{ route('tasks.updateStatus', $task->id) }}" method="POST" class="inline">
+            @csrf
+            @method('PATCH')
+            <select name="status" onchange="this.form.submit()" class="text-xs bg-gray-50 border border-gray-200 rounded-lg p-1 text-gray-600 outline-none cursor-pointer font-medium">
+                <option value="todo" {{ $task->status == 'todo' ? 'selected' : '' }}>To-Do</option>
+                <option value="in-progress" {{ $task->status == 'in-progress' ? 'selected' : '' }}>In Progress</option>
+                <option value="done" {{ $task->status == 'done' ? 'selected' : '' }}>Done</option>
+            </select>
+        </form>
 
         <button class="text-[#2F6BFF] text-xl hover:scale-110 duration-200">
             <i class="ri-edit-line"></i>
         </button>
     </div>
+</div>
 
     <h3 class="text-[#2F6BFF] text-[24px] font-semibold mt-5 mb-4 leading-tight">
        {{ $task->title }}
@@ -41,7 +54,7 @@
                 </span>
             </div>
 
-            <form action="{{ route('subtasks.destroy', $subtask->id) }}" method="POST" onsubmit="return confirm('Hapus item ini?')">
+            <form action="{{ route('subtasks.destroy', $subtask->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item??')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="text-gray-400 hover:text-red-500 opacity-0 group-hover/item:opacity-100 transition duration-200 pr-2">
