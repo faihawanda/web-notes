@@ -13,16 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
 
-        <link
-href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-rel="stylesheet"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#F8F9FC] antialiased" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-[#F8F9FC] antialiased overflow-hidden" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
-    <div class="flex min-h-screen">
+    <div class="flex h-screen">
 
         {{-- ===== SIDEBAR ===== --}}
         <aside class="w-64 bg-white shadow-sm flex flex-col">
@@ -38,35 +35,35 @@ rel="stylesheet"
             {{-- Menu --}}
             <nav class="flex-1 px-4 py-10 space-y-1">
 
-                <a href="#"
+                <a href="{{ route('dashboard') }}"
                     class="flex items-center gap-5 px-5 py-4 text-base font-semibold
                     {{ request()->routeIs('dashboard')
                     ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
-                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] hover:bg-[#F1F5FE] hover:border-[#0367F8] transition-all' }}">
+                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-home-line text-2xl"></i>
                     Dashboard
                 </a>
 
 
-                <a href="#"
+                <a href="{{ route('allnotes.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('karyawan.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('allnotes.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-sticky-note-line text-2xl"></i>
                     All Notes
                 </a>
 
-                <a href="#"
+                <a href="{{ route('category.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('category.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-folder-3-line text-2xl"></i>
                     Categories
                 </a>
 
-                <a href="#"
+                <a href="{{ route('tasklist.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('gaji.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                         {{ request()->routeIs('tasklist.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-list-check-3 text-2xl"></i>
                     Task List
@@ -75,15 +72,6 @@ rel="stylesheet"
 
             {{-- User Info + Logout --}}
             <div>
-                {{-- <div class="flex items-center gap-3 mb-3 bg-white py-4 px-3">
-                    <div
-                        class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold text-sm">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-black truncate">{{ auth()->user()->name }}</p>
-                    </div>
-                </div> --}}
                 <form method="POST" action="{{ route('logout') }}" class="px-5 py-4 pb-3">
                     @csrf
                     <button type="submit"
@@ -100,14 +88,8 @@ rel="stylesheet"
         {{-- ===== MAIN CONTENT ===== --}}
         <div class="flex-1 flex flex-col">
 
-            {{-- Topbar --}}
-            {{-- <header class="h-16 flex items-center justify-between px-6">
-                <h1 class="text-lg font-semibold text-gray-800">{{ $title ?? 'Dashboard' }}</h1>
-                <span class="text-sm text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</span>
-            </header> --}}
-
             {{-- Page Content --}}
-            <main class="flex-1 p-6 overflow-auto">
+            <main class="flex-1 p-14 overflow-y-auto">
                 @yield('content')
             </main>
 
