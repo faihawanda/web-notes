@@ -57,7 +57,7 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Project berhasil dihapus!');
     }
 
-    // ✨ FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
+    // FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
     public function updateStatus(Request $request, Task $task)
     {
         $request->validate([
@@ -69,5 +69,13 @@ class TaskController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Task status updated successfully!');
+    }
+
+    
+    public function destroySubtask(Subtask $subtask)
+    {
+        $subtask->delete();
+
+        return redirect()->back()->with('success', 'To-do berhasil dihapus!');
     }
 }
