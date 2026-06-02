@@ -23,9 +23,9 @@
         <div class="w-full max-w-md mx-auto justify-center items-center flex">
             <div>
                 <div class="flex flex-col justify-center items-center text-center mb-10 w-full">
-                    <h2 class="text-4xl font-bold text-black mb-3">Get Started with Paylio</h2>
+                    <h2 class="text-4xl font-bold text-black mb-3">Get Started with Notesy</h2>
                     <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-                        Create an account to manage payroll easily
+                        Create an account to manage your notes easily
                     </p>
                 </div>
 

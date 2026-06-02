@@ -8,58 +8,45 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('task.index', [
-            // Pastikan string status sesuai dengan database kamu nanti
-            'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
-            'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
-            'doneTasks'     => Task::where('status', 'done')->latest()->get(),
-        ]);
-    }   
 
-    public function store(Request $request)
-    {
-        // Validasi input form
+        'todoTasks' => Task::where('status', 'todo')->latest()->get(),
+        'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
+        'doneTasks' => Task::where('status', 'done')->latest()->get(),
+        ]);
+    }
+
+    public function store(Request $request) {
         $validated = $request->validate([
-            'title'    => 'required|string|max:255',
-            'category' => 'nullable|string',
-            'status'   => 'required|in:todo,in-progress,done'
+        'title' => 'required|string|max:255',
+        'category' => 'nullable|string',
+        'status' => 'required|in:todo,in-progress,done'
         ]);
 
-        // Simpan ke database
-        Task::create($validated);
-
-        // Kembalikan ke halaman board dengan pesan sukses
+        Task::create($validated);  
         return redirect()->back()->with('success', 'Task berhasil ditambahkan!');
     }
 
-
-    public function storeSubtask(Request $request, Task $task)
-    {
+    public function storeSubtask(Request $request, Task $task) {
         $request->validate([
-            'text' => 'required|string|max:255',
+        'text' => 'required|string|max:255',
         ]);
 
-        // Simpan subtask baru otomatis nempel ke ID task utamanya
         $task->subtasks()->create([
-            'text' => $request->text,
+        'text' => $request->text,
         ]);
 
         return redirect()->back()->with('success', 'To-do berhasil ditambahkan!');
     }
 
-    public function destroy(Task $task)
-    {
-        // Menghapus kartu utama beserta seluruh subtask di dalamnya secara otomatis (cascade)
+    public function destroy(Task $task) {
         $task->delete();
 
         return redirect()->back()->with('success', 'Project berhasil dihapus!');
     }
 
-    // FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
-    public function updateStatus(Request $request, Task $task)
-    {
+    public function updateStatus(Request $request, Task $task) {
         $request->validate([
             'status' => 'required|in:todo,in-progress,done'
         ]);
@@ -68,14 +55,38 @@ class TaskController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect()->back()->with('success', 'Task status updated successfully!');
+            return redirect()->back()->with('success', 'Task status updated successfully!');
     }
 
-    
-    public function destroySubtask(Subtask $subtask)
-    {
+
+    public function destroySubtask(Subtask $subtask) {
+
         $subtask->delete();
 
-        return redirect()->back()->with('success', 'To-do berhasil dihapus!');
+        return redirect()->back()->with('success', 'Subtask berhasil dihapus!');
     }
+
+
+    public function toggleSubtask(Subtask $subtask) {
+        $subtask->update([
+            'is_completed' => !$subtask->is_completed
+        ]);
+
+        return redirect()->back()->with('success', 'Status subtask berhasil diubah!');
+    }
+
+    public function update(Request $request, Task $task){
+  
+       $validated = $request->validate([
+           'title'    => 'required|string|max:255',
+           'category' => 'nullable|string',
+       ]);
+
+     
+       $task->update($validated);
+   
+       return redirect()->back()->with('success', 'Task berhasil diperbarui!');
+   }
 }
+
+

@@ -4,11 +4,8 @@
 
  {{-- Header --}}
     <div class="flex items-center gap-5 mb-8">
-        <h1 class="text-4xl font-bold text-gray-800 mb-2">NoteSpace</h1>
-    </div>
-    <div class="flex items-center gap-5 mb-8 mt-20">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Recent Notes</h1>
-        <div class="py-1 px-2 font-semibold border border-2 border-black rounded-xl">
+        <div class="py-1 px-2 font-semibold border-2 border-black rounded-xl">
             <button onclick="openAddModal()">
                 <i class="ri-add-line text-black"></i>
             </button>

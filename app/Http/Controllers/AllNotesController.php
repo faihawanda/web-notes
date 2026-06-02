@@ -12,7 +12,7 @@ class AllNotesController extends Controller
     {
         $notes = AllNotes::latest()->get();
 
-        return view('notes.index', compact('notes'));
+        return view('allnotes.index', compact('notes'));
     }
 
     // tambah data
