@@ -38,8 +38,8 @@
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center gap-5 px-5 py-4 text-base font-semibold
                     {{ request()->routeIs('dashboard')
-                    ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
-                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                        ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                        : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-home-line text-2xl"></i>
                     Dashboard
                 </a>
@@ -47,16 +47,18 @@
 
                 <a href="#"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('allnotes.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
-                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                         {{ request()->routeIs('allnotes.*')
+                             ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                             : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-sticky-note-line text-2xl"></i>
                     All Notes
                 </a>
 
                 <a href="{{ route('category.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
-                         {{ request()->routeIs('category.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
-                    : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
+                         {{ request()->routeIs('category.*')
+                             ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
+                             : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-folder-3-line text-2xl"></i>
                     Categories
                 </a>
@@ -76,7 +78,7 @@
                     @csrf
                     <button type="submit"
                         class="w-full flex items-center gap-5 px-5 py-4 rounded-lg text-base text-red-500 hover:bg-white font-medium transition">
-                        <i class="ri-logout-box-line text-2xl"></i> 
+                        <i class="ri-logout-box-line text-2xl"></i>
                         Logout
                     </button>
                 </form>

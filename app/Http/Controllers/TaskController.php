@@ -16,7 +16,7 @@ class TaskController extends Controller
             'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
             'doneTasks'     => Task::where('status', 'done')->latest()->get(),
         ]);
-    }
+    }   
 
     public function store(Request $request)
     {
