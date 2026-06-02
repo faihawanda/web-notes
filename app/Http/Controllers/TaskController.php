@@ -10,13 +10,13 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('task-board', [
+        return view('task.index', [
             // Pastikan string status sesuai dengan database kamu nanti
             'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
             'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
             'doneTasks'     => Task::where('status', 'done')->latest()->get(),
         ]);
-    }
+    }   
 
     public function store(Request $request)
     {
@@ -57,7 +57,7 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Project berhasil dihapus!');
     }
 
-    // ✨ FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
+    // FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
     public function updateStatus(Request $request, Task $task)
     {
         $request->validate([
@@ -69,5 +69,13 @@ class TaskController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Task status updated successfully!');
+    }
+
+    
+    public function destroySubtask(Subtask $subtask)
+    {
+        $subtask->delete();
+
+        return redirect()->back()->with('success', 'To-do berhasil dihapus!');
     }
 }
