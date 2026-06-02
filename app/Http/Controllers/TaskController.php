@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index()
-{
-    return view('task.index', [
-        'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
-        'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
-        'doneTasks'     => Task::where('status', 'done')->latest()->get(),
+    {
+        return view('task.index', [
+            // Pastikan string status sesuai dengan database kamu nanti
+            'todoTasks'     => Task::where('status', 'todo')->latest()->get(),
+            'progressTasks' => Task::where('status', 'in-progress')->latest()->get(),
+            'doneTasks'     => Task::where('status', 'done')->latest()->get(),
         ]);
     }   
 
@@ -54,5 +55,27 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->back()->with('success', 'Project berhasil dihapus!');
+    }
+
+    // FITUR UPDATE STATUS (PINDAH KOLOM) BIAR GA ERROR 500 LAGI ✨
+    public function updateStatus(Request $request, Task $task)
+    {
+        $request->validate([
+            'status' => 'required|in:todo,in-progress,done'
+        ]);
+
+        $task->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->back()->with('success', 'Task status updated successfully!');
+    }
+
+    
+    public function destroySubtask(Subtask $subtask)
+    {
+        $subtask->delete();
+
+        return redirect()->back()->with('success', 'To-do berhasil dihapus!');
     }
 }
