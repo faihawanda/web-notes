@@ -1,60 +1,75 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+
+use App\Models\Categories;
 use App\Models\AllNotes;
 use Illuminate\Http\Request;
 
+
 class AllNotesController extends Controller
 {
-    // tampil halaman
-    public function index()
-    {
-        $notes = AllNotes::latest()->get();
+   public function index()
+   {
+   $notes = AllNotes::with('category')->latest()->get();
+   $categories = Categories::all();
 
-        return view('notes.index', compact('notes'));
-    }
+   return view('allnotes.index', compact('notes', 'categories'));
+   }
+   public function create()
+   {
+       $categories = Categories::all();
+       return view('allnotes.create', compact('categories'));
+   }
 
-    // tambah data
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'color' => 'required'
-        ]);
+   public function store(Request $request)
+   {
+       $request->validate([
+           'title' => 'required',
+           'content' => 'required',
+           'category_id' => 'required'
+       ]);
 
-        AllNotes::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'color' => $request->color
-        ]);
 
-        return redirect()->back();
-    }
+       AllNotes::create([
+           'title' => $request->title,
+           'content' => $request->content,
+           'category_id' => $request->category_id,
+       ]);
+       return redirect()
+           ->route('allnotes.index')
+           ->with('success', 'Note created successfully!');
+   }
 
-    // update data
-    public function update(Request $request, $id)
-    {
-        $note = AllNotes::findOrFail($id);
 
-        $note->update([
-            'title' => $request->title,
-            'content' => $request->content,
-            'color' => $request->color
-        ]);
+  public function update(Request $request, $id)
+{
+   $notes = AllNotes::findOrFail($id);
 
-        return redirect()->back();
-    }
 
-    // delete data
-    public function destroy($id)
-    {
-        $note = AllNotes::findOrFail($id);
+   $notes->update([
+       'title' => $request->title,
+       'content' => $request->content,
+       'category_id' => $request->category_id,
+   ]);
 
-        $note->delete();
 
-        return redirect()->back();
-    }
+   return redirect()
+       ->route('allnotes.index')
+       ->with('success', 'Note updated successfully');
 }
 
+
+   public function destroy($id)
+   {
+       $notes = AllNotes::findOrFail($id);
+       $notes->delete();
+
+
+       return back()->with('success', 'Note deleted successfully!');
+   }
+
+   
+}

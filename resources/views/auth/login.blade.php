@@ -19,8 +19,12 @@
     <div class="w-screen h-screen overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-12">
 
         <div class="h-full w-full bg-[#1430FF] relative">
-            <div class="absolute bottom-0 p-10">
-                <h1 class="text-white text-[170px] font-bold leading-none">Hello, <br>User :D</h1>
+            <div class="absolute bottom-0 right-0 p-10">
+                <h1 class="text-white text-[170px] font-bold leading-none">Notesy</h1>
+            </div>
+            
+            <div class="absolute top-0 left-0 p-10">
+                <h1 class="text-white/50 text-7xl font-bold leading-none text-left">Capture Ideas, <br>Not Just Notes.</h1>
             </div>
         </div>
 

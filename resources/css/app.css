@@ -1,3 +1,130 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.about {
+   min-height: 100vh;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   overflow: hidden;
+   background: #2D2DFF;
+}
+
+.glow {
+   position: absolute;
+   width: 900px;
+   height: 900px;
+   border-radius: 50%;
+   background: radial-gradient(circle,
+           rgba(255, 255, 255, .12),
+           transparent 70%);
+}
+
+.about-title {
+   color: white;
+   font-size: clamp(40px, 5vw, 90px);
+   max-width: 1100px;
+   font-weight: 300;
+   line-height: 1.1;
+}
+
+.word {
+   display: inline-block;
+   margin-right: 10px;
+}
+
+.arrow {
+   position: absolute;
+   bottom: 40px;
+   color: white;
+   font-size: 42px;
+}
+
+.expertise {
+   min-height: 100vh;
+   padding: 60px;
+   position: relative;
+   background: #2D2DFF;
+}
+
+.cards {
+   position: relative;
+   height: 700px;
+   perspective: 1200px;
+}
+
+.card {
+   position: absolute;
+   width: 290px;
+   height: 420px;
+   background: white;
+   border-radius: 25px;
+   padding: 30px;
+   left: 50%;
+   top: 60px;
+}
+
+.expertise {
+   min-height: 100vh;
+   padding: 60px;
+   position: relative;
+   z-index: 2;
+}
+
+.top-info {
+   position: absolute;
+   top: 70px;
+   right: 70px;
+   width: 300px;
+}
+
+.top-info p {
+   color: white;
+   font-size: 18px;
+   line-height: 1.6;
+   text-transform: uppercase;
+}
+
+.title {
+   color: white;
+   font-size: 11vw;
+   line-height: .85;
+   font-weight: 300;
+   letter-spacing: -8px;
+   margin-top: 20px;
+}
+
+.cards {
+   position: relative;
+   height: 650px;
+   margin-top: 50px;
+   perspective: 1200px;
+}
+
+.card {
+   position: absolute;
+   left: 50%;
+   top: 50px;
+   width: 290px;
+   height: 420px;
+   background: white;
+   border-radius: 25px;
+   padding: 30px;
+   transform-style: preserve-3d;
+   box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+}
+
+.card h2 {
+   font-size: 24px;
+   margin-bottom: 25px;
+}
+
+.card li {
+   list-style: none;
+   padding: 14px 0;
+   border-bottom: 1px dashed #ddd;
+}

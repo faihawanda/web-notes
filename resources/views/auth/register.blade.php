@@ -23,9 +23,9 @@
         <div class="w-full max-w-md mx-auto justify-center items-center flex">
             <div>
                 <div class="flex flex-col justify-center items-center text-center mb-10 w-full">
-                    <h2 class="text-4xl font-bold text-black mb-3">Get Started with Paylio</h2>
+                    <h2 class="text-4xl font-bold text-black mb-3">Get Started with Notesy</h2>
                     <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-                        Create an account to manage payroll easily
+                        Create an account to manage your notes easily
                     </p>
                 </div>
 
@@ -81,8 +81,15 @@
         </div>
 
         <div class="h-full w-full bg-[#1430FF] relative">
-            <div class="absolute bottom-0 p-10">
-                <h1 class="text-white text-[170px] font-bold leading-none">Hi, <br>User :D</h1>
+            <div class="h-full w-full bg-[#1430FF] relative">
+                <div class="absolute bottom-0 right-0 p-10">
+                    <h1 class="text-white text-[170px] font-bold leading-none">Notesy</h1>
+                    <p class="text-white/30 text-4xl font-semibold leading-none pt-5 pl-3">The Best Notes Platform</p>
+                </div>
+                
+                <div class="absolute top-0 left-0 p-10">
+                    <h1 class="text-white/50 text-7xl font-bold leading-1 text-left">Think Clearly, <br>Write Freely.</h1>
+                </div>
             </div>
         </div>
 

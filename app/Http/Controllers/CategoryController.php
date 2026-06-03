@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Create_all_notes_table;
+use App\Models\add_category_id_to_all_notes_table;
+use App\Models\AllNotes;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -65,4 +68,3 @@ class CategoryController extends Controller
         return redirect()->back()->with('success', 'Category deleted successfully!');
     }
 }
-

@@ -45,13 +45,13 @@
                 </a>
 
 
-                <a href="#"
+                <a href="{{ route('allnotes.index') }}"
                     class="flex items-center gap-5 px-5 py-4 rounded-lg text-base font-semibold
                          {{ request()->routeIs('allnotes.*')
                              ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                              : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-sticky-note-line text-2xl"></i>
-                    All Notes
+                    Notes
                 </a>
 
                 <a href="{{ route('category.index') }}"
@@ -68,7 +68,7 @@
                          {{ request()->routeIs('tasks.*') ? 'bg-[#F1F5FE] text-[#0367F8] border-l-[6px] border-[#0367F8] rounded-xl'
                     : 'border-l-[6px] border-transparent text-gray-600 hover:text-[#0367F8] transition-all' }}">
                     <i class="ri-list-check-3 text-2xl"></i>
-                    Task List
+                    Project Manager
                 </a>
             </nav>
 
