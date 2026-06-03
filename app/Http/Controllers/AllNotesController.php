@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class AllNotesController extends Controller
 {
    public function index() {
+
         $notes = AllNotes::with('category')->latest()->get();
         $categories = Categories::all();
 

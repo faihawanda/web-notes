@@ -14,11 +14,17 @@
             <div class="mb-6">
                 <label class="font-semibold block mb-2">Note Title</label>
                 <input type="text" name="title" class="w-full border rounded-xl p-3" placeholder="Enter note title">
+                @error('title')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-6">
                 <label class="font-semibold block mb-2">Note Content</label>
                 <textarea name="content" rows="10" class="w-full border rounded-xl p-3" placeholder="Write your note..."></textarea>
+                @error('content')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-8">
@@ -43,11 +49,16 @@
                         {{ $category->name }}
                     </label>
                 @endforeach
+                @error('category_id')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
 
             </div>
 
 
-            <button type="submit" class="px-6 py-3 bg-[#0367F8] text-white rounded-xl">Save Note</button>
+            <button type="submit" onclick="handleAddNote()" class="px-6 py-3 bg-[#0367F8] text-white rounded-xl">
+                Save Note
+            </button>
 
         </form>
     </div>
