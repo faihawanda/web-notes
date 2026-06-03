@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     public function index() {
-        $categories = Categories::all();
+        $categories = Categories::withCount('notes')->get();
 
         return view('category.index', compact('categories'));
     }
@@ -67,4 +67,10 @@ class CategoryController extends Controller
 
         return redirect()->back()->with('success', 'Category deleted successfully!');
     }
+
+    public function showNotes($id) {
+    $categories = Categories::with('notes')->findOrFail($id);
+
+    return view('category.show', compact('categories'));
+}
 }

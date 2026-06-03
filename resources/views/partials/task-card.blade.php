@@ -2,10 +2,6 @@
 
     <div class="flex justify-between items-start gap-2">
         <div class="flex flex-wrap items-center gap-2">
-            <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6BFF] text-[12px] font-medium leading-none">
-                High
-            </span>
- 
  
             @if($task->category)
             <span class="h-7 px-3 flex items-center justify-center rounded-full bg-[#FFECEF] text-[#FF7D92] text-[12px] font-medium leading-none">

@@ -44,6 +44,7 @@ Route::controller(CategoryController::class)->group(function () {
     Route::post('/category/store', 'store')->name('category.store');
     Route::put('/category/update/{id}', 'update')->name('category.update');
     Route::delete('/category/destroy/{id}', 'destroy')->name('category.destroy');
+    Route::get('/category/{id}/notes', 'showNotes')->name('category.notes');
 });
 
 // All Notes (Hani)
