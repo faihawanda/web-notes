@@ -47,41 +47,41 @@
     <div class="grid grid-cols-4 gap-x-10 gap-y-10 w-fit h-full overflow-y-auto">
 
         @foreach ($categories as $category)
-            <a href="{{ route('category.notes', $category->id) }}">
-                @php
-                    // mapping warna dari database ke class tailwind
-                    $bgBack =
-                        [
-                            'blue' => 'bg-[#8EBEFF]',
-                            'green' => 'bg-[#95D9A9]',
-                            'red' => 'bg-[#FFA891]',
-                            'yellow' => 'bg-[#FFD480]',
-                            'purple' => 'bg-[#C7C5FF]',
-                        ][$category->color] ?? 'bg-[#D1D1D1]';
+            @php
+                // mapping warna dari database ke class tailwind
+                $bgBack =
+                    [
+                        'blue' => 'bg-[#8EBEFF]',
+                        'green' => 'bg-[#95D9A9]',
+                        'red' => 'bg-[#FFA891]',
+                        'yellow' => 'bg-[#FFD480]',
+                        'purple' => 'bg-[#C7C5FF]',
+                    ][$category->color] ?? 'bg-[#D1D1D1]';
 
-                    $bgFront =
-                        [
-                            'blue' => 'bg-[#4187E7] before:bg-[#4187E7]',
-                            'green' => 'bg-[#5FBB7A] before:bg-[#5FBB7A]',
-                            'red' => 'bg-[#EC7352] before:bg-[#EC7352]',
-                            'yellow' => 'bg-[#F5BA46] before:bg-[#F5BA46]',
-                            'purple' => 'bg-[#8581E0] before:bg-[#8581E0]',
-                        ][$category->color] ?? 'bg-[#A0A0A0] before:bg-[#A0A0A0]';
+                $bgFront =
+                    [
+                        'blue' => 'bg-[#4187E7] before:bg-[#4187E7]',
+                        'green' => 'bg-[#5FBB7A] before:bg-[#5FBB7A]',
+                        'red' => 'bg-[#EC7352] before:bg-[#EC7352]',
+                        'yellow' => 'bg-[#F5BA46] before:bg-[#F5BA46]',
+                        'purple' => 'bg-[#8581E0] before:bg-[#8581E0]',
+                    ][$category->color] ?? 'bg-[#A0A0A0] before:bg-[#A0A0A0]';
 
-                    // [ warna text ]
-                    $textColor = in_array($category->color, ['yellow', 'blue', 'green', 'red', 'purple'])
-                        ? 'text-white'
-                        : 'text-white/80';
+                // [ warna text ]
+                $textColor = in_array($category->color, ['yellow', 'blue', 'green', 'red', 'purple'])
+                    ? 'text-white'
+                    : 'text-white/80';
 
-                    $subColor = in_array($category->color, ['yellow', 'blue', 'green', 'red', 'purple'])
-                        ? 'text-white'
-                        : 'text-white/80';
-                @endphp
+                $subColor = in_array($category->color, ['yellow', 'blue', 'green', 'red', 'purple'])
+                    ? 'text-white'
+                    : 'text-white/80';
+            @endphp
 
 
-                {{-- Folder --}}
-                <div class="relative aspect-[1.15/1] flex flex-col w-64 mb-2">
-                    {{-- Back Folder) --}}
+            {{-- Folder --}}
+            <div class="relative aspect-[1.15/1] flex flex-col w-64 mb-2">
+                {{-- Back Folder) --}}
+                <a href="{{ route('category.notes', $category->id) }}">
                     <div class="absolute inset-0 {{ $bgBack }} rounded-[24px] z-10"></div>
 
 
@@ -94,50 +94,51 @@
                         class="absolute top-[20px] left-[16px] right-[16px] h-[45%] bg-white z-20 shadow-[0_4px_12px_rgba(0,0,0,0.15)] rounded-[4px]">
                         <div class="absolute top-0 left-[60px] w-[20px] h-[20px] rounded-[12px]"></div>
                     </div>
+                </a>
 
 
-                    {{-- Front Folder --}}
-                    <div
-                        class="absolute bottom-0 left-0 w-full h-[78%] {{ $bgFront }} rounded-br-[24px] rounded-bl-[24px] rounded-tr-[24px] z-30 p-5 flex flex-col justify-center before:content-[''] before:absolute before:-top-[16px] before:left-0 before:w-[60%] before:h-[16px] before:rounded-t-[16px]">
+                {{-- Front Folder --}}
+
+                <div
+                    class="absolute bottom-0 left-0 w-full h-[78%] {{ $bgFront }} rounded-br-[24px] rounded-bl-[24px] rounded-tr-[24px] z-30 p-5 flex flex-col justify-center before:content-[''] before:absolute before:-top-[16px] before:left-0 before:w-[60%] before:h-[16px] before:rounded-t-[16px]">
 
 
-                        <div class="absolute bottom-3 right-3 flex items-center gap-2 z-40">
+                    <div class="absolute bottom-3 right-3 flex items-center gap-2 z-40">
 
 
-                            {{-- Edit Button --}}
-                            <button
-                                onclick="openEditModal({{ $category->id }}, '{{ $category->name }}', '{{ $category->color }}')"
-                                type="button"
-                                class="p-1.5 bg-white/60 hover:bg-white rounded-full text-[#555555] transition-colors shadow-sm"
-                                title="Edit Folder">
-                                <i class="ri-pencil-line text-base px-1"></i>
-                            </button>
+                        {{-- Edit Button --}}
+                        <button
+                            onclick="openEditModal({{ $category->id }}, '{{ $category->name }}', '{{ $category->color }}')"
+                            type="button"
+                            class="p-1.5 bg-white/60 hover:bg-white rounded-full text-[#555555] transition-colors shadow-sm"
+                            title="Edit Folder">
+                            <i class="ri-pencil-line text-base px-1"></i>
+                        </button>
 
 
-                            {{-- Delete Button --}}
-                            <button
-                                onclick="openDeleteModal({{ $category->id }}, '{{ $category->name }}', '{{ $category->color }}')"
-                                type="button"
-                                class="p-1.5 bg-white/60 hover:bg-red-50 hover:text-red-600 rounded-full text-[#555555] transition-colors shadow-sm"
-                                title="Hapus Folder">
-                                <i class="ri-delete-bin-line text-base px-1"></i>
-                            </button>
-                        </div>
+                        {{-- Delete Button --}}
+                        <button
+                            onclick="openDeleteModal({{ $category->id }}, '{{ $category->name }}', '{{ $category->color }}')"
+                            type="button"
+                            class="p-1.5 bg-white/60 hover:bg-red-50 hover:text-red-600 rounded-full text-[#555555] transition-colors shadow-sm"
+                            title="Hapus Folder">
+                            <i class="ri-delete-bin-line text-base px-1"></i>
+                        </button>
+                    </div>
 
 
-                        {{-- Text --}}
-                        <h3 class="text-[24px] font-bold {{ $textColor }} mb-1 pr-14 tracking-wide truncate">
-                            {{ $category->name }}</h3>
-                        <p class="text-[14px] font-medium {{ $subColor }}">{{ $category->notes_count }} Notes</p>
-                        <div class="mt-auto">
-                            <p
-                                class="w-fit bg-white/80 text-left text-[10px] font-semibold tracking-wide uppercase text-gray-700 px-2 py-1 rounded-md">
-                                {{ $category->slug }}
-                            </p>
-                        </div>
+                    {{-- Text --}}
+                    <h3 class="text-[24px] font-bold {{ $textColor }} mb-1 pr-14 tracking-wide truncate">
+                        {{ $category->name }}</h3>
+                    <p class="text-[14px] font-medium {{ $subColor }}">{{ $category->notes_count }} Notes</p>
+                    <div class="mt-auto">
+                        <p
+                            class="w-fit bg-white/80 text-left text-[10px] font-semibold tracking-wide uppercase text-gray-700 px-2 py-1 rounded-md">
+                            {{ $category->slug }}
+                        </p>
                     </div>
                 </div>
-            </a>
+            </div>
         @endforeach
     </div>
 
