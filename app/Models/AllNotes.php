@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
-
 
 class AllNotes extends Model
 {
@@ -14,7 +11,6 @@ class AllNotes extends Model
        'content',
        'category_id'
    ];
-
 
    public function category()
    {

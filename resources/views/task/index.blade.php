@@ -174,34 +174,6 @@
         </div>
     </div>
 
-    {{-- MODAL HAPUS --}}
-    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden">
-            <div class="px-6 pt-6 pb-5">
-                <h3 class="text-base font-bold text-gray-900 text-center mb-1">Delete Category?</h3>
-            </div>
-            <div class="px-6 pb-6 flex gap-2">
-                {{-- Cancel Button --}}
-                <button onclick="closeModal('deleteModal')"
-                    class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-all">
-                    Cancel
-                </button>
-
-                {{-- Yes, Delete Button --}}
-                <form id="deleteForm" method="POST" class="flex-1">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                        class="w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-red-500 hover:bg-red-600 transition-all flex items-center justify-center gap-1.5">
-                        Yes, Delete
-                    </button>
-                </form>
-            </div>
-
-
-        </div>
-    </div>
-
     <script>
         function openModal(status) {
             const modal = document.getElementById('taskModal');
@@ -269,7 +241,7 @@
                 modal.querySelector('div').classList.remove('scale-95');
             }, 10);
         }
-
+        
         function closeEditModal() {
             const modal = document.getElementById('editTaskModal');
             modal.classList.add('opacity-0');

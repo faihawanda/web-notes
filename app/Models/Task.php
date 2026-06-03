@@ -13,7 +13,6 @@ class Task extends Model
         'status'
     ];
 
-    // TAMBAHKAN INI YA!
     public function subtasks()
     {
         return $this->hasMany(Subtask::class);

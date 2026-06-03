@@ -58,14 +58,12 @@ class TaskController extends Controller
             return redirect()->back()->with('success', 'Task status updated successfully!');
     }
 
-
     public function destroySubtask(Subtask $subtask) {
 
         $subtask->delete();
 
         return redirect()->back()->with('success', 'Subtask berhasil dihapus!');
     }
-
 
     public function toggleSubtask(Subtask $subtask) {
         $subtask->update([

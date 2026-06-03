@@ -11,21 +11,19 @@ use Illuminate\Http\Request;
 
 class AllNotesController extends Controller
 {
-   public function index()
-   {
-   $notes = AllNotes::with('category')->latest()->get();
-   $categories = Categories::all();
+   public function index() {
+        $notes = AllNotes::with('category')->latest()->get();
+        $categories = Categories::all();
 
-   return view('allnotes.index', compact('notes', 'categories'));
+        return view('allnotes.index', compact('notes', 'categories'));
    }
-   public function create()
-   {
+
+   public function create() {
        $categories = Categories::all();
        return view('allnotes.create', compact('categories'));
    }
 
-   public function store(Request $request)
-   {
+   public function store(Request $request) {
        $request->validate([
            'title' => 'required',
            'content' => 'required',
@@ -43,33 +41,27 @@ class AllNotesController extends Controller
            ->with('success', 'Note created successfully!');
    }
 
-
-  public function update(Request $request, $id)
-{
-   $notes = AllNotes::findOrFail($id);
+    public function update(Request $request, $id) {
+        $notes = AllNotes::findOrFail($id);
 
 
-   $notes->update([
-       'title' => $request->title,
-       'content' => $request->content,
-       'category_id' => $request->category_id,
-   ]);
+        $notes->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+         ]);
 
 
-   return redirect()
-       ->route('allnotes.index')
-       ->with('success', 'Note updated successfully');
-}
+        return redirect()
+            ->route('allnotes.index')
+            ->with('success', 'Note updated successfully');
+    }
 
-
-   public function destroy($id)
-   {
+    public function destroy($id){
        $notes = AllNotes::findOrFail($id);
        $notes->delete();
 
 
        return back()->with('success', 'Note deleted successfully!');
-   }
-
-   
+    }
 }
