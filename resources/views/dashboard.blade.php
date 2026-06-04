@@ -74,11 +74,11 @@
 
                 <div class="flex gap-2 w-full max-w-xs">
                     <button id="btn-start"
-                        class="flex-1 bg-[#5FBB7A] text-white font-medium py-3 rounded-xl hover:bg-zinc-800 transition text-sm">Start</button>
+                        class="flex-1 bg-[#5FBB7A] text-white font-medium py-3 rounded-xl hover:bg-[#1F9D59] transition text-sm">Start</button>
                     <button id="btn-pause"
-                        class="flex-1 bg-[#8581E0] text-white font-medium py-3 rounded-xl hover:bg-slate-500 transition text-sm">Pause</button>
+                        class="flex-1 bg-[#8581E0] text-white font-medium py-3 rounded-xl hover:bg-[#665FD6] transition text-sm">Pause</button>
                     <button id="btn-reset"
-                        class="flex-1 bg-[#EF7452] text-white font-medium py-3 rounded-xl hover:bg-slate-500 transition text-sm">Reset</button>
+                        class="flex-1 bg-[#EF7452] text-white font-medium py-3 rounded-xl hover:bg-[#FF532A] transition text-sm">Reset</button>
                 </div>
             </div>
 

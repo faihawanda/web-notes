@@ -16,27 +16,20 @@
         <div id="toast-success"
             class="fixed top-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl bg-white border border-gray-100 shadow-xl min-w-[320px] animate-slide-in">
 
-
-            {{-- Icon --}}
             <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
                 <i class="ri-check-line text-green-800 text-lg"></i>
             </div>
 
-
-            {{-- Text --}}
             <div class="flex-1">
                 <p class="text-sm font-semibold text-gray-800">
                     Success
                 </p>
-
 
                 <p class="text-xs text-gray-500 mt-0.5">
                     {{ session('success') }}
                 </p>
             </div>
 
-
-            {{-- Close --}}
             <button onclick="closeToast()" class="text-gray-300 hover:text-gray-500 transition-all">
                 <i class="ri-close-line text-lg"></i>
             </button>
@@ -84,27 +77,17 @@
                 <a href="{{ route('category.notes', $category->id) }}">
                     <div class="absolute inset-0 {{ $bgBack }} rounded-[24px] z-10"></div>
 
+                    <div class="absolute top-[16px] left-[24px] right-[24px] h-[35%] bg-white/70 rounded-t-[16px] z-15 transform rotate-[-1deg]"></div>
 
-                    <div
-                        class="absolute top-[16px] left-[24px] right-[24px] h-[35%] bg-white/70 rounded-t-[16px] z-15 transform rotate-[-1deg]">
-                    </div>
-
-
-                    <div
-                        class="absolute top-[20px] left-[16px] right-[16px] h-[45%] bg-white z-20 shadow-[0_4px_12px_rgba(0,0,0,0.15)] rounded-[4px]">
+                    <div class="absolute top-[20px] left-[16px] right-[16px] h-[45%] bg-white z-20 shadow-[0_4px_12px_rgba(0,0,0,0.15)] rounded-[4px]">
                         <div class="absolute top-0 left-[60px] w-[20px] h-[20px] rounded-[12px]"></div>
                     </div>
                 </a>
 
 
                 {{-- Front Folder --}}
-
-                <div
-                    class="absolute bottom-0 left-0 w-full h-[78%] {{ $bgFront }} rounded-br-[24px] rounded-bl-[24px] rounded-tr-[24px] z-30 p-5 flex flex-col justify-center before:content-[''] before:absolute before:-top-[16px] before:left-0 before:w-[60%] before:h-[16px] before:rounded-t-[16px]">
-
-
+                <div class="absolute bottom-0 left-0 w-full h-[78%] {{ $bgFront }} rounded-br-[24px] rounded-bl-[24px] rounded-tr-[24px] z-30 p-5 flex flex-col justify-center before:content-[''] before:absolute before:-top-[16px] before:left-0 before:w-[60%] before:h-[16px] before:rounded-t-[16px]">
                     <div class="absolute bottom-3 right-3 flex items-center gap-2 z-40">
-
 
                         {{-- Edit Button --}}
                         <button
@@ -114,7 +97,6 @@
                             title="Edit Folder">
                             <i class="ri-pencil-line text-base px-1"></i>
                         </button>
-
 
                         {{-- Delete Button --}}
                         <button

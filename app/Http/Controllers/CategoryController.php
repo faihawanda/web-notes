@@ -72,5 +72,5 @@ class CategoryController extends Controller
     $categories = Categories::with('notes')->findOrFail($id);
 
     return view('category.show', compact('categories'));
-}
+    }
 }
